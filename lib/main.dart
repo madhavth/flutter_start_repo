@@ -21,21 +21,18 @@ void main() {
   final userRepository = UserRepository();
   runApp(MultiRepositoryProvider(
     providers: [
-      RepositoryProvider<UserRepository>(create: (context) => userRepository)
+      RepositoryProvider<UserRepository>(create: (context) => userRepository),
     ],
     child: BlocProvider<AuthenticationBloc>(
       create: (context) {
         return AuthenticationBloc(userRepository: userRepository);
       },
-      child: MyApp(userRepository: userRepository),
+      child: MyApp(),
     ),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  final UserRepository userRepository;
-
-  const MyApp({Key key, this.userRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +59,7 @@ class MyApp extends StatelessWidget {
             return HomeScreen();
           }
           if (state is AuthenticationUnauthenticated) {
-            return LoginScreen(userRepository: userRepository);
+            return LoginScreen();
             // return RegisterScreen();
           }
           if (state is AuthenticationLoading) {

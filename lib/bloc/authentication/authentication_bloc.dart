@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_start_repo/bloc/authentication/bloc.dart';
+import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/repository/UserRepository.dart';
-import 'package:flutter_start_repo/repository/dio_helper.dart';
 import 'package:meta/meta.dart';
 import 'authentication_state.dart';
 
@@ -20,7 +21,7 @@ class AuthenticationBloc
   appStarted() async {
     final User user = await userRepository.getUserInfo();
     if (user != null) {
-      dio.options.headers['Authorization'] = 'Bearer ${user.token}';
+      g<Dio>().options.headers['Authorization'] = 'Bearer ${user.token}';
       emit(AuthenticationAuthenticated());
     } else {
       emit(AuthenticationUnauthenticated());
@@ -31,7 +32,7 @@ class AuthenticationBloc
   loggedIn(User user) async
   {
     await userRepository.persistUserInfo(user);
-    dio.options.headers['Authorization'] = 'Bearer ${user.token}';
+    g<Dio>().options.headers['Authorization'] = 'Bearer ${user.token}';
     emit(AuthenticationAuthenticated());
   }
 
