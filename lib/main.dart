@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Book Doctor',
+      title: 'Madhavth Start Repo',
       theme: ThemeData(
           fontFamily: 'Avenir',
           textTheme: TextTheme(
