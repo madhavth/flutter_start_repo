@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
               brightness: Brightness.dark,
               iconTheme: IconThemeData(color: Colors.white))),
-      onGenerateRoute: (settings) => Router.onGenerateRoute(settings),
+      onGenerateRoute: (settings) => Routers.onGenerateRoute(settings),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is AuthenticationAuthenticated) {

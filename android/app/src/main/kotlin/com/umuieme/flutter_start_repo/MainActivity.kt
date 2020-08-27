@@ -1,4 +1,4 @@
-package com.umuieme.flutter_start_repo
+package com.madhavth.flutter_start_repo
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

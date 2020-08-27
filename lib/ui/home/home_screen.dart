@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_start_repo/bloc/authentication/authentication_bloc.dart';
+import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FutureBuilder<User>(
-              future: Storage().getUserInfo(),
+              future: g<Storage>().getUserInfo(),
               builder: (context, snapshot) {
                 if(snapshot.data!=null)
                 return Text('userInfo === ${snapshot.data}');

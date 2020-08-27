@@ -25,14 +25,14 @@ class UserRepository {
   }
 
   Future<bool> deleteUserInfo() async {
-    return Storage().clearAll();
+    return g<Storage>().clearAll();
   }
 
   Future<void> persistUserInfo(User user) async {
-    return Storage().setUserInfo(user);
+    return g<Storage>().setUserInfo(user);
   }
 
   Future<User> getUserInfo() {
-    return Storage().getUserInfo();
+    return g<Storage>().getUserInfo();
   }
 }

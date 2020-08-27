@@ -6,17 +6,18 @@ import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@injectable
 class Storage {
   final SharedPreferences pref = g<SharedPreferences>();
 
-  static final Storage _singleton = new Storage._internal();
+  Storage._();
 
-  factory Storage() {
-    return _singleton;
+  static final Storage _storage = Storage._();
+
+  factory Storage()
+  {
+    return _storage;
   }
 
-  Storage._internal();
 
   Future<void> setUserInfo(User user) async {
     return pref.setString(Preference.USER_INFO, jsonEncode(user.toJson()));

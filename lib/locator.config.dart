@@ -23,9 +23,9 @@ Future<GetIt> $initGetIt(
   final gh = GetItHelper(get, environment, environmentFilter);
   final appModule = _$AppModule();
   gh.lazySingleton<Dio>(() => appModule.dio());
-  final sharedPreferences = await appModule.prefs;
+  final sharedPreferences = await appModule.sharedPreferences;
   gh.factory<SharedPreferences>(() => sharedPreferences);
-  gh.factory<Storage>(() => Storage());
+  gh.factory<Storage>(() => appModule.storage);
   return get;
 }
 

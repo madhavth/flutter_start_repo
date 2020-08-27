@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_start_repo/ui/login/login_screen.dart';
 import 'package:flutter_start_repo/ui/regsiter/register_screen.dart';
 
-class Router {
+class Routers {
   static const LOGIN = "login";
   static const REGISTER = 'register';
   static const DOCTOR_DETAIL = "doctor_detail";

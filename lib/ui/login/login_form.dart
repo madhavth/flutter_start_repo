@@ -33,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   _onSignUpPressed() {
-    Navigator.pushNamed(context, Router.REGISTER);
+    Navigator.pushNamed(context, Routers.REGISTER);
   }
 
   _onForgetPasswordPressed() {}
