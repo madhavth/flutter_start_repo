@@ -9,32 +9,30 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 64,
-              ),
-              FlutterLogo(
-                size: 128,
-              ),
-              SizedBox(
-                height: 64,
-              ),
-              BlocProvider<LoginBloc>(
-                create: (context) {
-                  return LoginBloc(
-                    authenticationBloc:
-                        BlocProvider.of<AuthenticationBloc>(context),
-                    userRepository: RepositoryProvider.of<UserRepository>(context),
-                  );
-                },
-                child: LoginForm(),
-              ),
-            ],
-          ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 64,
+            ),
+            FlutterLogo(
+              size: 128,
+            ),
+            SizedBox(
+              height: 64,
+            ),
+            BlocProvider<LoginBloc>(
+              create: (context) {
+                return LoginBloc(
+                  authenticationBloc:
+                      BlocProvider.of<AuthenticationBloc>(context),
+                  userRepository: RepositoryProvider.of<UserRepository>(context),
+                );
+              },
+              child: LoginForm(),
+            ),
+          ],
         ),
       ),
     );
