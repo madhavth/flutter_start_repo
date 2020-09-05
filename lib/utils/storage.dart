@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Storage {
@@ -20,7 +19,8 @@ class Storage {
 
 
   Future<void> setUserInfo(User user) async {
-    return pref.setString(Preference.USER_INFO, jsonEncode(user.toJson()));
+    return await pref.setString(
+        Preference.USER_INFO, jsonEncode(user.toJson()));
   }
 
   Future<User> getUserInfo() async {
@@ -32,6 +32,6 @@ class Storage {
 
   Future<bool> clearAll()async
   {
-    return pref.clear();
+    return await pref.clear();
   }
 }
