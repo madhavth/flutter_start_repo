@@ -33,7 +33,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,7 +57,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,4 +79,3 @@ class StartScreen extends StatelessWidget {
     );
   }
 }
-

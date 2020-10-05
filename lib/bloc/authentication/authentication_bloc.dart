@@ -5,6 +5,7 @@ import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/repository/UserRepository.dart';
 import 'package:meta/meta.dart';
+
 import 'authentication_state.dart';
 
 class AuthenticationBloc
@@ -19,7 +20,7 @@ class AuthenticationBloc
   }
 
   appStarted() async {
-    final User user = await userRepository.getUserInfo();
+    final User user = userRepository.getUserInfo();
     if (user != null) {
       g<Dio>().options.headers['Authorization'] = 'Bearer ${user.token}';
       emit(AuthenticationAuthenticated());

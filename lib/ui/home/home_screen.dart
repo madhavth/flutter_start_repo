@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/size_extension.dart';
 import 'package:flutter_start_repo/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_start_repo/locator.dart';
-import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
-import 'package:flutter_screenutil/size_extension.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -22,25 +21,22 @@ class HomeScreen extends StatelessWidget {
               height: 200.h,
               child: Column(
                 children: [
-                  FutureBuilder<User>(
-                      future: g<Storage>().getUserInfo(),
-                      builder: (context, snapshot) {
-                        if(snapshot.data!=null)
-                          return Text('userInfo === ${snapshot.data}',
-                            style: TextStyle(fontSize: 16.sp),
-                          );
-                        else
-                          return Text('fettching..');
-                      }
+                  Text(
+                    'userInfo === ${g<Storage>().getUserInfo()}',
+                    style: TextStyle(fontSize: 16.sp),
                   ),
                   FlatButton(
-                    onPressed: (){
+                    onPressed: () {
                       BlocProvider.of<AuthenticationBloc>(context).logOut();
                     },
-                    child: Text('Logout',style: TextStyle(fontSize: 12.sp),),
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(fontSize: 12.sp),
+                    ),
                   ),
-                  Text('screen width === ${MediaQuery.of(context).size.width}\n'
-                      'screen height === ${MediaQuery.of(context).size.height}',
+                  Text(
+                    'screen width === ${MediaQuery.of(context).size.width}\n'
+                    'screen height === ${MediaQuery.of(context).size.height}',
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ],

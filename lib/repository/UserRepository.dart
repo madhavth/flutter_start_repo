@@ -3,7 +3,6 @@ import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
-import 'package:injectable/injectable.dart';
 
 
 class UserRepository {
@@ -32,7 +31,7 @@ class UserRepository {
     return g<Storage>().setUserInfo(user);
   }
 
-  Future<User> getUserInfo() {
+  User getUserInfo() {
     return g<Storage>().getUserInfo();
   }
 }

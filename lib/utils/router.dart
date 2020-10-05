@@ -25,7 +25,8 @@ class Routers {
             builder: (_) => RegisterScreen().adaptOnOrientation());
 
       default:
-        return Text('something went wrong').defaultPage();
+        return Scaffold(body: Center(child: Text('something went wrong')))
+            .defaultPage();
     }
   }
 }

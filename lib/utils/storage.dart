@@ -23,7 +23,7 @@ class Storage {
         Preference.USER_INFO, jsonEncode(user.toJson()));
   }
 
-  Future<User> getUserInfo() async {
+  User getUserInfo() {
     print("userinfo in pref ===== ${pref.get(Preference.USER_INFO)}");
     return pref.containsKey(Preference.USER_INFO)
         ? User.fromJson(jsonDecode(pref.get(Preference.USER_INFO)))
