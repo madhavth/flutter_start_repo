@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_start_repo/bloc/authentication/bloc.dart';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/repository/UserRepository.dart';
@@ -54,7 +53,6 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.dark,
               iconTheme: IconThemeData(color: Colors.white))),
       onGenerateRoute: (settings) => Routers.onGenerateRoute(settings),
-      home: SafeArea(child: StartScreen()),
       initialRoute: Routers.START_PAGE,
     );
   }
@@ -64,20 +62,22 @@ class MyApp extends StatelessWidget {
 class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      builder: (context, state) {
-        if (state is AuthenticationAuthenticated) {
-          return HomeScreen();
-        }
-        if (state is AuthenticationUnauthenticated) {
-          return LoginScreen();
-          // return RegisterScreen();
-        }
-        if (state is AuthenticationLoading) {
-          return LoadingIndicator();
-        }
-        return SplashScreen();
-      },
+    return SafeArea(
+      child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is AuthenticationAuthenticated) {
+            return HomeScreen();
+          }
+          if (state is AuthenticationUnauthenticated) {
+            return LoginScreen();
+            // return RegisterScreen();
+          }
+          if (state is AuthenticationLoading) {
+            return LoadingIndicator();
+          }
+          return SplashScreen();
+        },
+      ),
     );
   }
 }

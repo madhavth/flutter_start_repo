@@ -18,28 +18,49 @@ class Routers {
             settings: RouteSettings(name: START_PAGE),
             builder: (_) => StartScreen().adaptOnOrientation());
       case LOGIN:
-        return MaterialPageRoute(builder: (_) => LoginScreen().adaptOnOrientation());
+        return MaterialPageRoute(
+            builder: (_) => LoginScreen().adaptOnOrientation());
       case REGISTER:
-        return MaterialPageRoute(builder: (_) => RegisterScreen().adaptOnOrientation());
+        return MaterialPageRoute(
+            builder: (_) => RegisterScreen().adaptOnOrientation());
 
       default:
-        return Text("aalu khau");
+        return Text('something went wrong').defaultPage();
     }
   }
 }
 
-extension ScreenUtilConfig on Widget {
+extension RouterWidgetExtensions on Widget {
   Widget adaptOnOrientation() {
     return OrientationBuilder(
       builder: (BuildContext context, Orientation orientation) {
         final isPortrait = orientation == Orientation.portrait;
         ScreenUtil.init(context,
-            width: isPortrait ? ScreenUtilConstants.width : ScreenUtilConstants.height,
-            height: isPortrait ? ScreenUtilConstants.height : ScreenUtilConstants.width
-        );
+            designSize: isPortrait
+                ? Size(ScreenUtilConstants.width, ScreenUtilConstants.height)
+                : Size(ScreenUtilConstants.height, ScreenUtilConstants.width));
 
         return this;
       },
     );
+  }
+
+  PageRouteBuilder fadePage({opaque = true}) {
+    return PageRouteBuilder(
+      pageBuilder: (ctx, anim, anim2) {
+        return this;
+      },
+      transitionsBuilder: (ctx, anim, anim2, child) {
+        return FadeTransition(
+          opacity: anim,
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 250),
+    );
+  }
+
+  MaterialPageRoute defaultPage() {
+    return MaterialPageRoute(builder: (_) => this);
   }
 }
