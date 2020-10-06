@@ -5,6 +5,6 @@ import 'package:injectable/injectable.dart';
 final g = GetIt.instance;
 
 @InjectableInit()
-setupDependencies(String environment){
-  $initGetIt(g, environment: environment);
+setupDependencies(String environment) async {
+  await $initGetIt(g, environment: environment);
 }

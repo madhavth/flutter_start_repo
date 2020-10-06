@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:flutter_start_repo/utils/error_helper.dart';
-import 'package:flutter_start_repo/utils/storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,5 +33,4 @@ abstract class AppModule{
   @preResolve
   Future<SharedPreferences> get sharedPreferences async => await SharedPreferences.getInstance();
 
-  Storage get storage => Storage();
 }

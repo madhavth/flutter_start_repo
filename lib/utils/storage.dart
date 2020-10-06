@@ -1,22 +1,15 @@
 import 'dart:convert';
 
-import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@lazySingleton
 class Storage {
-  final SharedPreferences pref = g<SharedPreferences>();
+  final SharedPreferences pref;
 
-  Storage._();
-
-  static final Storage _storage = Storage._();
-
-  factory Storage()
-  {
-    return _storage;
-  }
-
+  Storage(this.pref);
 
   Future<void> setUserInfo(User user) async {
     return await pref.setString(

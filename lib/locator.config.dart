@@ -25,7 +25,7 @@ Future<GetIt> $initGetIt(
   gh.lazySingleton<Dio>(() => appModule.dio());
   final sharedPreferences = await appModule.sharedPreferences;
   gh.factory<SharedPreferences>(() => sharedPreferences);
-  gh.factory<Storage>(() => appModule.storage);
+  gh.lazySingleton<Storage>(() => Storage(sharedPreferences));
   return get;
 }
 

@@ -14,10 +14,10 @@ import 'package:injectable/injectable.dart';
 
 String environment = Environment.dev;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-  setupDependencies(environment);
+  await setupDependencies(environment);
   final userRepository = UserRepository();
   runApp(MultiRepositoryProvider(
     providers: [
