@@ -8,7 +8,6 @@ import 'package:flutter_start_repo/utils/constant.dart';
 class Routers {
   static const LOGIN = "login";
   static const REGISTER = 'register';
-  static const DOCTOR_DETAIL = "doctor_detail";
   static const START_PAGE = 'start_page';
 
   static onGenerateRoute(RouteSettings settings) {
