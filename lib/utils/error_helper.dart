@@ -5,10 +5,11 @@ import 'package:dio/dio.dart';
 class ErrorHelper {
   static String getErrorMessage(error) {
     print('error helper === $error');
+    String message=  "Something went wrong.";
     if (error is DioError) {
-      return error.message;
+      message = error.message;
     }
-    return error.toString();
+    return message;
   }
 
   static extractApiError(DioError error) {
