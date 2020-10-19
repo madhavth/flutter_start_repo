@@ -12,7 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   meta: ^1.1.8
   equatable: ^1.2.5
-  shared_preferences: ^0.5.4+5
+  shared_preferences: ^0.5.12+2
   path_provider: ^1.6.18
   dio: ^3.0.8
   flutter_bloc: ^6.0.5
