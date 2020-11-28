@@ -41,7 +41,7 @@ class _RegisterFormState extends State<RegisterForm> {
               if (state is RegisterSuccess) {
                 Navigator.pushReplacementNamed(context, Routers.LOGIN);
               } else if (state is RegisterError) {
-                Scaffold.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('${state.error}'),
                     backgroundColor: Colors.red,

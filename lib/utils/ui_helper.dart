@@ -7,7 +7,7 @@ class UiHelper {
       SnackBarAction action,
       int durationInMilliSeconds = 4000,
       double width}) {
-    Scaffold.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       backgroundColor: isError ? Colors.red : Colors.black,
       action: action,
       content: Text(
