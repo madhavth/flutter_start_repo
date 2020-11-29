@@ -17,4 +17,6 @@ jobs:
             name: Upload to Slack
             command: |
               export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 | sed -E 's/^[^ ]+ (.*)$/\1/g')
-              curl -F file=@build/app/outputs/apk/release/app-release.apk -F channels=$SLACK_CHANNEL -H "Authorization: Bearer ${SLACK_API_TOKEN}" -F title="${CIRCLE_PROJECT_REPONAME} | branch -> ${CIRCLE_BRANCH} | commit -> ${GIT_COMMIT_DESC}"  https://slack.com/api/files.upload
+
+              #curl -F file=@build/app/outputs/apk/release/app-release.apk -F channels=$SLACK_CHANNEL -H "Authorization: Bearer ${SLACK_API_TOKEN}" -F title="${CIRCLE_PROJECT_REPONAME} | branch -> ${CIRCLE_BRANCH} | commit -> ${GIT_COMMIT_DESC}"  https://slack.com/api/files.upload
+              curl -F file=@build/app/outputs/apk/release/app-release.apk -F channels=$SLACK_CHANNEL -H "Authorization: Bearer ${SLACK_API_TOKEN}" -F initial_comment="Changes: ${GIT_COMMIT_DESC}" -F title="${CIRCLE_PROJECT_REPONAME}_${CIRCLE_BRANCH}"  https://slack.com/api/files.upload
