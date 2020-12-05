@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @module
 abstract class AppModule{
-  @lazySingleton
   Dio dio() =>
       new Dio(BaseOptions(
           baseUrl: Api.BASE_URL,
@@ -30,7 +29,6 @@ abstract class AppModule{
           return ErrorHelper.extractApiError(error);
         }));
 
-  @preResolve
   Future<SharedPreferences> get sharedPreferences async => await SharedPreferences.getInstance();
 
 }

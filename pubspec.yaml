@@ -10,22 +10,21 @@ dependencies:
     sdk: flutter
   json_annotation:
   cupertino_icons: ^1.0.0
-  meta: ^1.1.8
+  meta: ^1.2.8
   equatable: ^1.2.5
-  shared_preferences: ^0.5.12+2
-  path_provider: ^1.6.18
-  dio: ^3.0.8
-  flutter_bloc: ^6.0.5
-  get_it: ^4.0.4
-  injectable: ^1.0.4
+  shared_preferences: ^0.5.12+4
+  path_provider: ^1.6.24
+  injectable: ^1.0.5
+  dio: ^3.0.10
+  flutter_bloc: ^6.1.1
+  get_it: ^5.0.1
   dio_http_cache: ^0.2.11
-  flutter_screenutil: ^3.1.1
+  flutter_screenutil: ^3.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  injectable_generator: ^1.0.4
-  build_runner: ^1.10.2
+  build_runner: ^1.10.7
   json_serializable:
 
 
