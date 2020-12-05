@@ -51,8 +51,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
               brightness: Brightness.dark,
               iconTheme: IconThemeData(color: Colors.white))),
-      onGenerateRoute: (settings) => Routers.onGenerateRoute(settings),
-      initialRoute: Routers.START_PAGE,
+      onGenerateRoute: (settings) => AppRouter.onGenerateRoute(settings),
+      initialRoute: AppRouter.START_PAGE,
     );
   }
 }

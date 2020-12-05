@@ -5,7 +5,7 @@ import 'package:flutter_start_repo/ui/login/login_screen.dart';
 import 'package:flutter_start_repo/ui/regsiter/register_screen.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 
-class Routers {
+class AppRouter {
   static const LOGIN = "login";
   static const REGISTER = 'register';
   static const START_PAGE = 'start_page';
