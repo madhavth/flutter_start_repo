@@ -16,10 +16,10 @@ dependencies:
   path_provider: ^1.6.24
   injectable: ^1.0.5
   dio: ^3.0.10
-  flutter_bloc: ^6.1.1
   get_it: ^5.0.1
   dio_http_cache: ^0.2.11
-  flutter_screenutil: ^3.2.0
+  flutter_screenutil: ^4.0.2+3
+  flutter_riverpod: ^0.12.1
 
 dev_dependencies:
   flutter_test:

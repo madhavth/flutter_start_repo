@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/size_extension.dart';
-import 'package:flutter_start_repo/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_start_repo/locator.dart';
+import 'package:flutter_start_repo/ui/start/start_screen.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
+import 'package:flutter_riverpod/all.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: () {
-                      BlocProvider.of<AuthenticationBloc>(context).logOut();
+                      context.read(authenticationNotifierProvider).logOut();
                     },
                     child: Text(
                       'Logout',

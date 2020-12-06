@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start_repo/bloc/register/register_bloc.dart';
-import 'package:flutter_start_repo/bloc/register/register_state.dart';
+import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_start_repo/notifiers/register/notifier.dart';
 import 'package:flutter_start_repo/ui/extra/button.dart';
 import 'package:flutter_start_repo/ui/extra/loading.dart';
 import 'package:flutter_start_repo/utils/router.dart';
+
+final registerNotifierProvider = StateNotifierProvider.autoDispose<RegisterNotifier>((ref){
+  return RegisterNotifier(ref.read);
+});
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -17,7 +20,7 @@ class _RegisterFormState extends State<RegisterForm> {
   _onRegisterUser() {
     if (!_formKey.currentState.validate()) return;
     _formKey.currentState.save();
-    BlocProvider.of<RegisterBloc>(context).registerUser();
+    context.read(registerNotifierProvider).registerUser();
   }
 
   @override
@@ -36,8 +39,9 @@ class _RegisterFormState extends State<RegisterForm> {
           SizedBox(
             height: 64,
           ),
-          BlocConsumer<RegisterBloc, RegisterState>(
-            listener: (context, state) {
+          ProviderListener(
+            provider: registerNotifierProvider.state,
+            onChange: (context, state) {
               if (state is RegisterSuccess) {
                 Navigator.pushReplacementNamed(context, AppRouter.LOGIN);
               } else if (state is RegisterError) {
@@ -49,9 +53,11 @@ class _RegisterFormState extends State<RegisterForm> {
                 );
               }
             },
-            builder: (context, state) {
-              return _buildBody(state);
+            child: Consumer(builder: (BuildContext context, watch, Widget child) {
+              final registerState = watch(registerNotifierProvider.state);
+              return _buildBody(registerState);
             },
+            ),
           )
         ],
       ),

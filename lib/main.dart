@@ -1,35 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start_repo/bloc/authentication/bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_start_repo/locator.dart';
-import 'package:flutter_start_repo/repository/UserRepository.dart';
-import 'package:flutter_start_repo/ui/extra/loading.dart';
-import 'package:flutter_start_repo/ui/home/home_screen.dart';
-import 'package:flutter_start_repo/ui/login/login_screen.dart';
-import 'package:flutter_start_repo/ui/screen/splash_screen.dart';
 import 'package:flutter_start_repo/utils/color.dart';
 import 'package:flutter_start_repo/utils/router.dart';
-import 'package:flutter_start_repo/utils/simple_bloc_delegate.dart';
 import 'package:injectable/injectable.dart';
 
 String environment = Environment.dev;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = SimpleBlocObserver();
   await setupDependencies(environment);
-  final userRepository = UserRepository();
-  runApp(MultiRepositoryProvider(
-    providers: [
-      RepositoryProvider<UserRepository>(create: (context) => userRepository),
-    ],
-    child: BlocProvider<AuthenticationBloc>(
-      create: (context) {
-        return AuthenticationBloc(userRepository: userRepository);
-      },
-      child: MyApp(),
-    ),
-  ));
+  runApp(ProviderScope(child: InitScreen()));
+}
+
+class InitScreen extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+        designSize: Size(480,960),
+        child: MyApp());
+  }
+
 }
 
 class MyApp extends StatelessWidget {
@@ -43,9 +36,9 @@ class MyApp extends StatelessWidget {
               bodyText1: TextStyle(color: CustomColor.DEFAULT_TEXT_COLOR),
               bodyText2: TextStyle(
                 color: CustomColor.DEFAULT_TEXT_COLOR,
-                fontSize: 15,
+                fontSize: 15.sp,
               ),
-              headline6: TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
+              headline6: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w700)),
           primaryColor: CustomColor.PRIMARY_COLOR,
           accentColor: CustomColor.ACCENT_COLOR,
           appBarTheme: AppBarTheme(
@@ -53,29 +46,6 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Colors.white))),
       onGenerateRoute: (settings) => AppRouter.onGenerateRoute(settings),
       initialRoute: AppRouter.START_PAGE,
-    );
-  }
-}
-
-class StartScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          if (state is AuthenticationAuthenticated) {
-            return HomeScreen();
-          }
-          if (state is AuthenticationUnauthenticated) {
-            return LoginScreen();
-            // return RegisterScreen();
-          }
-          if (state is AuthenticationLoading) {
-            return LoadingIndicator();
-          }
-          return SplashScreen();
-        },
-      ),
     );
   }
 }

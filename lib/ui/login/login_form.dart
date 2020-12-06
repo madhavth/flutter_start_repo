@@ -1,14 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start_repo/bloc/login/bloc.dart';
+import 'package:flutter_start_repo/notifiers/login/login_notifier.dart';
+import 'package:flutter_start_repo/notifiers/login/notifier.dart';
 import 'package:flutter_start_repo/ui/extra/button.dart';
 import 'package:flutter_start_repo/ui/extra/loading.dart';
 import 'package:flutter_start_repo/utils/color.dart';
 import 'package:flutter_start_repo/utils/router.dart';
 import 'package:flutter_start_repo/utils/ui_helper.dart';
 import 'package:flutter_start_repo/utils/validator.dart';
+import 'package:flutter_riverpod/all.dart';
+
+final loginNotifierProvider = StateNotifierProvider.autoDispose<LoginNotifier>((ref){
+  return LoginNotifier(ref.read);
+});
 
 class LoginForm extends StatefulWidget {
   @override
@@ -25,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
     if (!_formKey.currentState.validate()) return;
     _formKey.currentState.save();
     print('email $_email password $_password');
-    BlocProvider.of<LoginBloc>(context).loginButtonPressed(_email, _password);
+    context.read(loginNotifierProvider).loginButtonPressed(_email, _password);
   }
 
   _onSignInWithFacebook() {
@@ -44,14 +49,16 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Padding(
           padding: EdgeInsets.all(16),
-          child: BlocListener<LoginBloc, LoginState>(
-            listener: (context, state) {
+          child: ProviderListener(
+            provider: loginNotifierProvider.state,
+            onChange: (BuildContext context, LoginState state) {
               if (state is LoginFailure) {
                 UiHelper.showSnackBar(context, state.error, isError: true);
               }
             },
-            child: BlocBuilder<LoginBloc, LoginState>(
-              builder: (context, state) {
+            child: Consumer(
+              builder: (context,watch, child) {
+                final state= watch(loginNotifierProvider.state);
                 return _buildBody(state);
               },
             ),
