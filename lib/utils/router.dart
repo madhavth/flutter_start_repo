@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'package:flutter_start_repo/main.dart';
+import 'package:flutter_start_repo/ui/extra/session_expired.dart';
 import 'package:flutter_start_repo/ui/login/login_screen.dart';
 import 'package:flutter_start_repo/ui/regsiter/register_screen.dart';
-import 'package:flutter_start_repo/utils/constant.dart';
+import 'package:flutter_start_repo/ui/start/start_screen.dart';
 
 class AppRouter {
   static const LOGIN = "login";
   static const REGISTER = 'register';
   static const START_PAGE = 'start_page';
+  static const SESSION_EXPIRED = 'session-expired';
+
+  static GlobalKey navigatorKey = GlobalKey<NavigatorState>();
+  static NavigatorState navigatorState = navigatorKey.currentState;
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case START_PAGE:
         return MaterialPageRoute(
             settings: RouteSettings(name: START_PAGE),
-            builder: (_) => StartScreen().adaptOnOrientation());
+            builder: (_) => StartScreen());
       case LOGIN:
         return MaterialPageRoute(
-            builder: (_) => LoginScreen().adaptOnOrientation());
+            builder: (_) => LoginScreen());
       case REGISTER:
         return MaterialPageRoute(
-            builder: (_) => RegisterScreen().adaptOnOrientation());
+            builder: (_) => RegisterScreen());
+      case SESSION_EXPIRED:
+        return PageRouteBuilder(
+            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+              return SessionExpiredScreen();
+        });
 
       default:
         return Scaffold(body: Center(child: Text('something went wrong')))
@@ -31,20 +39,6 @@ class AppRouter {
 }
 
 extension RouterWidgetExtensions on Widget {
-  Widget adaptOnOrientation() {
-    return OrientationBuilder(
-      builder: (BuildContext context, Orientation orientation) {
-        final isPortrait = orientation == Orientation.portrait;
-        ScreenUtil.init(context,
-            designSize: isPortrait
-                ? Size(ScreenUtilConstants.width, ScreenUtilConstants.height)
-                : Size(ScreenUtilConstants.height, ScreenUtilConstants.width));
-
-        return this;
-      },
-    );
-  }
-
   PageRouteBuilder fadePage({opaque = true}) {
     return PageRouteBuilder(
       pageBuilder: (ctx, anim, anim2) {
