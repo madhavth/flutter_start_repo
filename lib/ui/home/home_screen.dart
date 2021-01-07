@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/size_extension.dart';
 import 'package:flutter_start_repo/locator.dart';
-import 'package:flutter_start_repo/ui/start/start_screen.dart';
+import 'package:flutter_start_repo/notifiers/authentication/notifiers.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
 import 'package:flutter_riverpod/all.dart';
 

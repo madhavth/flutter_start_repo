@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
 
+final userRepositoryProvider = Provider<UserRepository>((ref){
+  return UserRepository();
+});
 
 class UserRepository {
   final Dio _dio = g<Dio>();
