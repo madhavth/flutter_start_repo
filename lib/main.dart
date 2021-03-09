@@ -38,7 +38,7 @@ class InitScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-      ScreenUtil.init(constraints,designSize: Size(480,960));
+      ScreenUtil.init(constraints,Orientation.portrait, designSize: Size(480,960));
       return MyApp();
     },
     );
