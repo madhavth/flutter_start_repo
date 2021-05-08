@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/size_extension.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorScreen extends StatelessWidget {
-  final String message;
-  final Function() retry;
-  final Color textColor;
-  final double fontSize;
-  final double gap;
-  final Widget retryButton;
+  final String? message;
+  final Function()? retry;
+  final Color? textColor;
+  final double? fontSize;
+  final double? gap;
+  final Widget? retryButton;
 
   const ErrorScreen(
-      {Key key,
+      {Key? key,
       this.gap = 10,
       this.retryButton,
-      this.message,
+      this.message="",
       this.fontSize = 14,
       this.retry,
       this.textColor})
@@ -27,20 +27,20 @@ class ErrorScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              message,
+              message!,
               style: TextStyle(
-                  fontSize: fontSize.sp, color: textColor ?? Colors.black),
+                  fontSize: fontSize!.sp, color: textColor ?? Colors.black),
             ),
             retry != null
                 ? Column(
                     children: [
                       SizedBox(
-                        height: gap.h,
+                        height: gap!.h,
                       ),
                       retryButton ??
                           IconButton(
                             onPressed: () {
-                              retry();
+                              retry!();
                             },
                             icon: Icon(Icons.refresh_sharp),
                           ),

@@ -6,8 +6,8 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<GetIt> configureDependencies(GetIt get, {
-String environment,
-    EnvironmentFilter environmentFilter}) async
+String? environment,
+    EnvironmentFilter? environmentFilter}) async
 {
   final gh = GetItHelper(get, environment, environmentFilter);
   final appModule = $AppModule();

@@ -17,8 +17,8 @@ import 'utils/storage.dart';
 
 Future<GetIt> $initGetIt(
   GetIt get, {
-  String environment,
-  EnvironmentFilter environmentFilter,
+  String? environment,
+  EnvironmentFilter? environmentFilter,
 }) async {
   final gh = GetItHelper(get, environment, environmentFilter);
   final appModule = _$AppModule();

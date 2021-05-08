@@ -22,8 +22,8 @@ class _LoginFormState extends State<LoginForm> {
   GlobalKey<FormState> _formKey = GlobalKey();
 
   _onSignInPress() {
-    if (!_formKey.currentState.validate()) return;
-    _formKey.currentState.save();
+    if (!_formKey.currentState!.validate()) return;
+    _formKey.currentState!.save();
     print('email $_email password $_password');
     BlocProvider.of<LoginBloc>(context).loginButtonPressed(_email, _password);
   }
@@ -68,19 +68,19 @@ class _LoginFormState extends State<LoginForm> {
           style: TextStyle(fontSize: 16),
           decoration:
               InputDecoration(hintText: "Username", labelText: "Username"),
-          validator: (value) => Validator.validateEmail(value),
-          onSaved: (value) => _email = value,
+          validator: (value) => Validator.validateEmail(value!),
+          onSaved: (value) => _email = value!,
           initialValue: kDebugMode ? 'admin@admin.com' : '',
         ),
         SizedBox(
           height: 32,
         ),
         TextFormField(
-          validator: (value) => Validator.validatePassword(value),
+          validator: (value) => Validator.validatePassword(value!),
           style: TextStyle(fontSize: 16),
           decoration:
               InputDecoration(hintText: "Password", labelText: "Password"),
-          onSaved: (value) => _password = value,
+          onSaved: (value) => _password = value!,
           initialValue: kDebugMode ? 'secret' : '',
         ),
         SizedBox(
@@ -108,7 +108,7 @@ class _LoginFormState extends State<LoginForm> {
         SizedBox(
           height: 32,
         ),
-        RaisedButton(
+        MaterialButton(
           onPressed: () => this._onSignInWithFacebook(),
           child: Text("Connect with Facebook"),
           color: CustomColor.FB_LOGO,

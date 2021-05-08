@@ -4,7 +4,6 @@ import 'package:flutter_start_repo/bloc/authentication/bloc.dart';
 import 'package:flutter_start_repo/bloc/login/bloc.dart';
 import 'package:flutter_start_repo/repository/UserRepository.dart';
 import 'package:flutter_start_repo/utils/error_helper.dart';
-import 'package:meta/meta.dart';
 
 import '../../utils/error_helper.dart';
 import 'bloc.dart';
@@ -14,11 +13,9 @@ class LoginBloc extends Cubit<LoginState> {
   final AuthenticationBloc authenticationBloc;
 
   LoginBloc({
-    @required this.userRepository,
-    @required this.authenticationBloc,
-  })  : assert(userRepository != null),
-        assert(authenticationBloc != null),
-        super(LoginInitial());
+    required this.userRepository,
+    required this.authenticationBloc,
+  })  : super(LoginInitial());
 
   loginButtonPressed(String username, String password) async {
     emit(LoginLoading());

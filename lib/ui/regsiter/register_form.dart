@@ -15,8 +15,8 @@ class _RegisterFormState extends State<RegisterForm> {
   GlobalKey<FormState> _formKey = GlobalKey();
 
   _onRegisterUser() {
-    if (!_formKey.currentState.validate()) return;
-    _formKey.currentState.save();
+    if (!_formKey.currentState!.validate()) return;
+    _formKey.currentState!.save();
     BlocProvider.of<RegisterBloc>(context).registerUser();
   }
 
@@ -41,7 +41,7 @@ class _RegisterFormState extends State<RegisterForm> {
               if (state is RegisterSuccess) {
                 Navigator.pushReplacementNamed(context, AppRouter.LOGIN);
               } else if (state is RegisterError) {
-                Scaffold.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('${state.error}'),
                     backgroundColor: Colors.red,

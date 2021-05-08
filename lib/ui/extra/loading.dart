@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/size_extension.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoadingIndicator extends StatelessWidget {
   final double height;
-  final Color color;
+  final Color? color;
 
-  const LoadingIndicator({Key key, this.height =20, this.color}) : super(key: key);
+  const LoadingIndicator({Key? key, this.height =20, this.color}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Center(

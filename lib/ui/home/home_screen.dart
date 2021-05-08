@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/size_extension.dart';
 import 'package:flutter_start_repo/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 
 class HomeScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,30 +25,24 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     'userInfo === ${g<Storage>().getUserInfo()}',
-                    style: TextStyle(fontSize: 16.sp),
+                    style: TextStyle(fontSize: 24.sp),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       BlocProvider.of<AuthenticationBloc>(context).logOut();
                     },
                     child: Text(
                       'Logout',
-                      style: TextStyle(fontSize: 12.sp),
+                      style: TextStyle(fontSize: 20.sp),
                     ),
                   ),
                   Text(
                     'screen width === ${MediaQuery.of(context).size.width}\n'
                     'screen height === ${MediaQuery.of(context).size.height}',
-                    style: TextStyle(fontSize: 16.sp),
+                    style: TextStyle(fontSize: 24.sp),
                   ),
                 ],
               ),
-            ),
-
-            Container(
-              width: 320.w,
-              height: 40.h,
-              color: Colors.deepPurple,
             ),
 
             Container(
@@ -55,7 +51,8 @@ class HomeScreen extends StatelessWidget {
               child: Center(
                 child: TextHeight(),
               ),
-            )
+            ),
+
           ],
         ),
       ),
@@ -68,7 +65,7 @@ class TextHeight extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx,size){
       return Text('width, height ==== ${size.maxWidth}, ${size.maxHeight}',
-      style: TextStyle(fontSize: 14.sp),
+      style: TextStyle(fontSize: 24.sp),
       );
     });
   }

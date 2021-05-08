@@ -11,15 +11,15 @@ class Storage {
 
   Storage(this.pref);
 
-  Future<void> setUserInfo(User user) async {
+  Future<bool> setUserInfo(User user) async {
     return await pref.setString(
         Preference.USER_INFO, jsonEncode(user.toJson()));
   }
 
-  User getUserInfo() {
+  User? getUserInfo() {
     print("userinfo in pref ===== ${pref.get(Preference.USER_INFO)}");
     return pref.containsKey(Preference.USER_INFO)
-        ? User.fromJson(jsonDecode(pref.get(Preference.USER_INFO)))
+        ? User.fromJson(jsonDecode(pref.get(Preference.USER_INFO) as String))
         : null;
   }
 

@@ -11,7 +11,6 @@ class AppRouter {
   static const SESSION_EXPIRED = 'session-expired';
 
   static GlobalKey navigatorKey = GlobalKey<NavigatorState>();
-  static NavigatorState navigatorState = navigatorKey.currentState;
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {

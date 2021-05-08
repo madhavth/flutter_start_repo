@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 class UiHelper {
   static showSnackBar(context, String message,
       {bool isError = false,
-      SnackBarAction action,
+        SnackBarAction? action,
       int durationInMilliSeconds = 4000,
-      double width}) {
-    Scaffold.of(context).showSnackBar(SnackBar(
+      double? width}) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       backgroundColor: isError ? Colors.red : Colors.black,
       action: action,
       content: Text(
@@ -20,12 +20,12 @@ class UiHelper {
     ));
   }
 
-  changeStatusBarColor({Color color}) {
+  changeStatusBarColor({Color? color}) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: color ?? Colors.black));
   }
 
-  changeSoftNavBarColor({Color color}) {
+  changeSoftNavBarColor({Color? color}) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(systemNavigationBarColor: color ?? Colors.black));
   }

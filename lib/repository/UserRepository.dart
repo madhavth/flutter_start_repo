@@ -17,21 +17,21 @@ class UserRepository {
     return User(username: "madhavth",token: "1232312", id: "123214");
   }
 
-  Future<Map> registerUser(Map register) async {
+  Future<Map> registerUser(Map<String,dynamic> register) async {
     var response =
         await _dio.post(Api.REGISTER, data: FormData.fromMap(register));
     return response.data;
   }
 
   Future<bool> deleteUserInfo() async {
-    return g<Storage>().clearAll();
+    return await g<Storage>().clearAll();
   }
 
-  Future<void> persistUserInfo(User user) async {
-    return g<Storage>().setUserInfo(user);
+  Future<bool> persistUserInfo(User user) async {
+    return await g<Storage>().setUserInfo(user);
   }
 
-  User getUserInfo() {
+  User? getUserInfo() {
     return g<Storage>().getUserInfo();
   }
 }

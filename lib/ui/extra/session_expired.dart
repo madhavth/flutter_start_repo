@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/size_extension.dart';
 import 'package:flutter_start_repo/utils/router.dart';
 
 class SessionExpiredScreen extends StatelessWidget {

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  final Function onPressed;
-  final String title;
-  final EdgeInsets padding;
-  final Decoration decoration;
-  final TextStyle textStyle;
+  final Function? onPressed;
+  final String? title;
+  final EdgeInsets? padding;
+  final Decoration? decoration;
+  final TextStyle? textStyle;
 
   const Button(
-      {Key key,
+      {Key? key,
       this.onPressed,
       this.title,
       this.padding,
@@ -18,7 +18,11 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: this.onPressed,
+      onTap: ()
+      {
+        if(onPressed!=null)
+          onPressed!();
+      },
       child: Container(
         padding: padding ?? EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: decoration ??
@@ -27,11 +31,11 @@ class Button extends StatelessWidget {
               color: Theme.of(context).accentColor,
             ),
         child: Text(
-          title,
+          title!,
           textAlign: TextAlign.center,
           style: textStyle ??
               TextStyle(
-                  color: Theme.of(context).textTheme.bodyText2.color,
+                  color: Theme.of(context).textTheme.bodyText2!.color,
                   fontSize: 18),
         ),
       ),
