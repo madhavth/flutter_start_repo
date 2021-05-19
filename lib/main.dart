@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 
 String environment = Environment.dev;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
   await setupDependencies(environment);
