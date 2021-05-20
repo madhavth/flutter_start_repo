@@ -5,7 +5,8 @@ import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@lazySingleton
+@Environment(Environment.dev)
+@LazySingleton(dispose: disposeStorageInstance)
 class Storage {
   final SharedPreferences pref;
 
@@ -27,4 +28,15 @@ class Storage {
   {
     return await pref.clear();
   }
+
+  @disposeMethod
+  void dispose()
+  {
+    
+  }
+}
+
+disposeStorageInstance(Storage storage)
+{
+  storage.dispose();
 }

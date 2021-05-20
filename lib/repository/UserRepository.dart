@@ -3,8 +3,10 @@ import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:flutter_start_repo/utils/storage.dart';
+import 'package:injectable/injectable.dart';
 
-
+@Environment(Environment.dev)
+@injectable
 class UserRepository {
   final Dio _dio = g<Dio>();
   // Dio client;

@@ -3,6 +3,7 @@ import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@Environment(Environment.dev)
 @module
 abstract class AppModule {
   Dio dio() => new Dio(BaseOptions(
@@ -23,13 +24,8 @@ abstract class AppModule {
           handler.next(error);
         }));
 
+  @preResolve
   Future<SharedPreferences> get sharedPreferences async =>
       await SharedPreferences.getInstance();
 
-  goToSessionExpiredScreen(DioError error) async {
-    // await Future.delayed(Duration(milliseconds: 250));
-    // if (error.response.statusCode == 401) {
-    //   AppRouter.navigatorState.pushReplacementNamed(AppRouter.SESSION_EXPIRED);
-    // }
-  }
 }
