@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_start_repo/main.dart';
 import 'package:flutter_start_repo/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
@@ -18,7 +19,7 @@ class Storage {
   }
 
   User? getUserInfo() {
-    print("userinfo in pref ===== ${pref.get(Preference.USER_INFO)}");
+    logger.i("userinfo in pref ===== ${pref.get(Preference.USER_INFO)}");
     return pref.containsKey(Preference.USER_INFO)
         ? User.fromJson(jsonDecode(pref.get(Preference.USER_INFO) as String))
         : null;

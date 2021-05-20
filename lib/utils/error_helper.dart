@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_start_repo/main.dart';
 
 class ErrorHelper {
   static String getErrorMessage(error) {
-    print('error helper === $error');
+    logger.e('error helper === $error');
     String message=  "Something went wrong.";
     if (error is DioError) {
       message = error.message;
@@ -14,7 +15,7 @@ class ErrorHelper {
 
   static extractApiError(DioError error) {
     String message = "Something went wrong";
-    print(
+    logger.e(
         'error === ${error.response}  ==== ${error.response != null ? error.response?.data : 'noresponse'} ==== ${error.response != null ? error.response?.extra : 'no response'}=== ${error.message}');
     if (error is DioError) {
       if (error.error is SocketException || error.type == DioErrorType.connectTimeout) {

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_start_repo/bloc/login/bloc.dart';
+import 'package:flutter_start_repo/main.dart';
 import 'package:flutter_start_repo/ui/extra/button.dart';
 import 'package:flutter_start_repo/ui/extra/loading.dart';
 import 'package:flutter_start_repo/utils/color.dart';
@@ -24,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
   _onSignInPress() {
     if (!_formKey.currentState!.validate()) return;
     _formKey.currentState!.save();
-    print('email $_email password $_password');
+    logger.d('email $_email password $_password');
     BlocProvider.of<LoginBloc>(context).loginButtonPressed(_email, _password);
   }
 

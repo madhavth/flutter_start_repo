@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @Environment(Environment.dev)
@@ -13,8 +14,8 @@ abstract class AppModule {
       ))
         ..interceptors
             .add(InterceptorsWrapper(onRequest: (RequestOptions options,handler) async {
-          print(
-              'interceptors ===  ${options.baseUrl} ===  ${options.path} ===  ${options.data}');
+          // print(
+          //     'interceptors ===  ${options.baseUrl} ===  ${options.path} ===  ${options.data}');
           handler.next(options);
         }, onResponse: (Response response,handler) async {
               handler.next(response);
@@ -22,7 +23,8 @@ abstract class AppModule {
           // goToSessionExpiredScreen(error);
           // return ErrorHelper.extractApiError(error);
           handler.next(error);
-        }));
+        }))
+    ..interceptors.add(PrettyDioLogger());
 
   @preResolve
   Future<SharedPreferences> get sharedPreferences async =>

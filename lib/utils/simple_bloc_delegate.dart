@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_start_repo/main.dart';
 
 class SimpleBlocObserver extends BlocObserver {
 
@@ -7,18 +8,18 @@ class SimpleBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print(transition);
+    logger.i(transition);
   }
 
   @override
   void onError(cubit, Object error, StackTrace stacktrace) {
     super.onError(cubit, error, stacktrace);
-    print(error);
+    logger.e(error);
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    print('onChange cubit $change, $bloc');
+    logger.d('onChange cubit $change, $bloc');
   }
 }

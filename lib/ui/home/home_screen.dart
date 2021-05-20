@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_start_repo/bloc/authentication/authentication_bloc.dart';
@@ -8,6 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class HomeScreen extends StatelessWidget {
+
+  const HomeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class HomeScreen extends StatelessWidget {
               color: Colors.blue,
               height: 100.h,
               child: Center(
-                child: TextHeight(),
+                child: const TextHeight(),
               ),
             ),
 
@@ -61,11 +64,24 @@ class HomeScreen extends StatelessWidget {
 }
 
 class TextHeight extends StatelessWidget {
+
+  const TextHeight();
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx,size){
-      return Text('width, height ==== ${size.maxWidth}, ${size.maxHeight}',
-      style: TextStyle(fontSize: 24.sp),
+      return Column(
+        children: [
+          Text('width, height ==== ${size.maxWidth}, ${size.maxHeight}',
+          style: TextStyle(fontSize: 24.sp),
+          ),
+          FutureBuilder(builder: (ctx,ss)
+          {
+           return Text(ss.hasData.toString()); 
+          },
+            future: g<Dio>().get("https://jsonplaceholder.typicode.com/todos/1"),
+          )
+        ],
       );
     });
   }

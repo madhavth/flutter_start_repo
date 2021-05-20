@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_start_repo/bloc/authentication/bloc.dart';
 import 'package:flutter_start_repo/bloc/login/bloc.dart';
+import 'package:flutter_start_repo/main.dart';
 import 'package:flutter_start_repo/repository/UserRepository.dart';
 import 'package:flutter_start_repo/utils/error_helper.dart';
 
@@ -24,10 +25,10 @@ class LoginBloc extends Cubit<LoginState> {
         username,
         password,
       );
-      print("loginbloc === ${userInfo.toJson()}");
+      logger.i("loginbloc === ${userInfo.toJson()}");
       authenticationBloc.loggedIn(userInfo);
     } catch (error) {
-      print(error);
+      logger.e(error);
       emit(LoginFailure(error: ErrorHelper.getErrorMessage(error)));
     }
   }

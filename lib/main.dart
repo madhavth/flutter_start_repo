@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,8 +9,16 @@ import 'package:flutter_start_repo/utils/color.dart';
 import 'package:flutter_start_repo/utils/router.dart';
 import 'package:flutter_start_repo/utils/simple_bloc_delegate.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 String environment = Environment.dev;
+
+var logger = Logger(
+  filter: kDebugMode? DevelopmentFilter(): ProductionFilter(),
+  printer: PrettyPrinter(),
+  level: kDebugMode? null: Level.error
+);
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
