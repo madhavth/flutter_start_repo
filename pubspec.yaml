@@ -21,6 +21,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   pretty_dio_logger: ^1.1.1
   logger: ^1.0.0
+  dartz: ^0.10.0
 
 dev_dependencies:
   integration_test:

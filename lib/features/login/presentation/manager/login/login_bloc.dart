@@ -20,16 +20,19 @@ class LoginBloc extends Cubit<LoginState> {
 
   loginButtonPressed(String username, String password) async {
     emit(LoginLoading());
-    try {
-      final userInfo = await userRepository.authenticateUser(
+    final userInfoResult = await userRepository.authenticateUser(
         username,
         password,
       );
+
+      userInfoResult.fold((error) {
+      logger.e(error.errorMessage);
+      emit(LoginFailure(error: ErrorHelper.getErrorMessage(error.errorMessage)));
+      },
+    (userInfo) {
       logger.i("loginbloc === ${userInfo.toJson()}");
-      authenticationBloc.loggedIn(userInfo);
-    } catch (error) {
-      logger.e(error);
-      emit(LoginFailure(error: ErrorHelper.getErrorMessage(error)));
-    }
+          authenticationBloc.loggedIn(userInfo);
+      });
+
   }
 }

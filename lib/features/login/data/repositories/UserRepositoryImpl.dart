@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_start_repo/errors/failures.dart';
 import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/features/login/data/models/User.dart';
@@ -14,11 +16,11 @@ class UserRepositoryImpl extends UserRepository {
   // Dio client;
   UserRepositoryImpl();
 
-  Future<User> authenticateUser(username, password) async {
+  Future<Either<Failure, User>> authenticateUser(username, password) async {
 //    var response = await _dio
 //        .post('auth', data: {'username': username, 'password': password});
 //    print(response);
-    return User(username: "madhavth",token: "1232312", id: "123214");
+    return Right(User(username: "madhavth",token: "1232312", id: "123214"));
   }
 
   Future<Map> registerUser(Map<String,dynamic> register) async {
