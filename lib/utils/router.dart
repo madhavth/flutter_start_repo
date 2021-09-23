@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start_repo/ui/extra/session_expired.dart';
-import 'package:flutter_start_repo/ui/login/login_screen.dart';
-import 'package:flutter_start_repo/ui/regsiter/register_screen.dart';
-import 'package:flutter_start_repo/ui/start/start_screen.dart';
+import 'package:flutter_start_repo/widgets/session_expired.dart';
+import 'package:flutter_start_repo/features/login/presentation/pages/login_screen.dart';
+import 'package:flutter_start_repo/features/register/presentation/pages/register_screen.dart';
+import 'package:flutter_start_repo/features/login/presentation/pages/start_screen.dart';
 
 class AppRouter {
   static const LOGIN = "login";

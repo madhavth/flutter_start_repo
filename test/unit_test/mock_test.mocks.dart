@@ -4,8 +4,8 @@
 
 import 'dart:async' as _i4;
 
-import 'package:flutter_start_repo/models/User.dart' as _i2;
-import 'package:flutter_start_repo/repository/UserRepository.dart' as _i3;
+import 'package:flutter_start_repo/features/login/data/models/User.dart' as _i2;
+import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -19,7 +19,7 @@ class _FakeUser extends _i1.Fake implements _i2.User {}
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i3.UserRepositoryImpl {
   MockUserRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -50,7 +50,7 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class UserRepositoryMock extends _i1.Mock implements _i3.UserRepository {
+class UserRepositoryMock extends _i1.Mock implements _i3.UserRepositoryImpl {
   @override
   _i4.Future<_i2.User> authenticateUser(dynamic username, dynamic password) =>
       (super.noSuchMethod(

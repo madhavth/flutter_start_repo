@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start_repo/models/User.dart';
-import 'package:flutter_start_repo/repository/UserRepository.dart';
+import 'package:flutter_start_repo/features/login/data/models/User.dart';
+import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mock_test.mocks.dart';
 
-@GenerateMocks([UserRepository], customMocks: [MockSpec<UserRepository>(
+@GenerateMocks([UserRepositoryImpl], customMocks: [MockSpec<UserRepositoryImpl>(
     as: #UserRepositoryMock,
     returnNullOnMissingStub: true)])
 void main() {

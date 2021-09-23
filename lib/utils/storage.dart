@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_start_repo/main.dart';
-import 'package:flutter_start_repo/models/User.dart';
+import 'package:flutter_start_repo/features/login/data/models/User.dart';
 import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';

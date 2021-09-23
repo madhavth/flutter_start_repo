@@ -1,0 +1,35 @@
+
+import 'package:bloc/bloc.dart';
+import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
+import 'package:flutter_start_repo/features/login/presentation/manager/login/bloc.dart';
+import 'package:flutter_start_repo/main.dart';
+import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart';
+import 'package:flutter_start_repo/utils/error_helper.dart';
+
+import '../../../../../utils/error_helper.dart';
+import 'bloc.dart';
+
+class LoginBloc extends Cubit<LoginState> {
+  final UserRepositoryImpl userRepository;
+  final AuthenticationBloc authenticationBloc;
+
+  LoginBloc({
+    required this.userRepository,
+    required this.authenticationBloc,
+  })  : super(LoginInitial());
+
+  loginButtonPressed(String username, String password) async {
+    emit(LoginLoading());
+    try {
+      final userInfo = await userRepository.authenticateUser(
+        username,
+        password,
+      );
+      logger.i("loginbloc === ${userInfo.toJson()}");
+      authenticationBloc.loggedIn(userInfo);
+    } catch (error) {
+      logger.e(error);
+      emit(LoginFailure(error: ErrorHelper.getErrorMessage(error)));
+    }
+  }
+}

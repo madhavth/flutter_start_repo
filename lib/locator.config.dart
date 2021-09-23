@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
 import 'di/appModule.dart' as _i7;
-import 'repository/UserRepository.dart' as _i6;
+import 'features/login/data/repositories/UserRepositoryImpl.dart' as _i6;
 import 'utils/storage.dart' as _i5;
 
 const String _dev = 'dev';
@@ -27,7 +27,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       preResolve: true);
   gh.lazySingleton<_i5.Storage>(() => _i5.Storage(get<_i4.SharedPreferences>()),
       registerFor: {_dev}, dispose: (i) => i.dispose());
-  gh.factory<_i6.UserRepository>(() => _i6.UserRepository(),
+  gh.factory<_i6.UserRepositoryImpl>(() => _i6.UserRepositoryImpl(),
       registerFor: {_dev});
   return get;
 }
