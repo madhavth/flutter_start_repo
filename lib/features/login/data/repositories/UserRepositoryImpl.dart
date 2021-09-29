@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_start_repo/errors/failures.dart';
+import 'package:flutter_start_repo/core/errors/failures.dart';
 import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/features/login/data/models/User.dart';

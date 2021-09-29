@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_start_repo/core/widgets/button.dart';
+import 'package:flutter_start_repo/core/widgets/loading.dart';
 import 'package:flutter_start_repo/features/register/presentation/manager/register_bloc.dart';
 import 'package:flutter_start_repo/features/register/presentation/manager/register_state.dart';
-import 'package:flutter_start_repo/widgets/button.dart';
-import 'package:flutter_start_repo/widgets/loading.dart';
 import 'package:flutter_start_repo/utils/router.dart';
 
 class RegisterForm extends StatefulWidget {

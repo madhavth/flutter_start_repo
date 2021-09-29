@@ -12,3 +12,8 @@ abstract class Failure extends Equatable {
   @override
   List<Object?> get props => [errorMessage, ..._properties];
 }
+
+// General failures
+class ServerFailure extends Failure {
+  ServerFailure(String errorMessage) : super(errorMessage);
+}

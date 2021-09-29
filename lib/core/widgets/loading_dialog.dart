@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start_repo/widgets/loading.dart';
+
+import 'loading.dart';
 
 class LoadingDialog {
   static showLoadingDialog(context) {

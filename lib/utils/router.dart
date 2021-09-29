@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start_repo/widgets/session_expired.dart';
+import 'package:flutter_start_repo/core/widgets/session_expired.dart';
 import 'package:flutter_start_repo/features/login/presentation/pages/login_screen.dart';
 import 'package:flutter_start_repo/features/register/presentation/pages/register_screen.dart';
 import 'package:flutter_start_repo/features/login/presentation/pages/start_screen.dart';

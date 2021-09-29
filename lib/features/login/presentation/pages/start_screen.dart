@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_start_repo/core/widgets/loading.dart';
+import 'package:flutter_start_repo/core/widgets/splash_screen.dart';
 import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
-import 'package:flutter_start_repo/widgets/loading.dart';
 import 'package:flutter_start_repo/features/home/presentation/pages/home_screen.dart';
 import 'package:flutter_start_repo/features/login/presentation/pages/login_screen.dart';
-import 'package:flutter_start_repo/widgets/splash_screen.dart';
 
 class StartScreen extends StatelessWidget {
   @override
