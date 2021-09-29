@@ -1,5 +1,6 @@
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
 import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
 import 'package:flutter_start_repo/features/login/presentation/manager/login/bloc.dart';
 import 'package:flutter_start_repo/main.dart';
@@ -10,7 +11,6 @@ import '../../../../../utils/error_helper.dart';
 import 'bloc.dart';
 
 class LoginBloc extends Cubit<LoginState> {
-  final UserRepositoryImpl userRepository;
   final AuthenticationBloc authenticationBloc;
 
   LoginBloc({

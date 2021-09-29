@@ -8,6 +8,7 @@ import 'package:flutter_start_repo/utils/simple_bloc_delegate.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
+import 'features/login/domain/repositories/UserRepository.dart';
 import 'my_app.dart';
 
 String environment = Environment.dev;
@@ -21,10 +22,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
   await setupDependencies(environment);
-  final userRepository = UserRepositoryImpl();
+  final userRepository = g<UserRepository>();
   runApp(MultiRepositoryProvider(
     providers: [
-      RepositoryProvider<UserRepositoryImpl>(create: (context) => userRepository),
+      RepositoryProvider<UserRepository>(create: (context) => userRepository),
     ],
     child: MultiBlocProvider(
       providers: [

@@ -9,9 +9,17 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
-import 'di/appModule.dart' as _i7;
-import 'features/login/data/repositories/UserRepositoryImpl.dart' as _i6;
-import 'utils/storage.dart' as _i5;
+import 'di/appModule.dart' as _i11;
+import 'features/login/data/data_sources/user_repo_local_data_source.dart'
+    as _i5;
+import 'features/login/data/data_sources/user_repository_remote_data_source.dart'
+    as _i7;
+import 'features/login/data/repositories/user_repo_local_data_source_impl.dart'
+    as _i6;
+import 'features/login/data/repositories/user_repository_remote_data_source_impl.dart'
+    as _i8;
+import 'features/login/data/repositories/UserRepositoryImpl.dart' as _i10;
+import 'features/login/domain/repositories/UserRepository.dart' as _i9;
 
 const String _dev = 'dev';
 // ignore_for_file: unnecessary_lambdas
@@ -25,11 +33,16 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   await gh.factoryAsync<_i4.SharedPreferences>(
       () => appModule.sharedPreferences,
       preResolve: true);
-  gh.lazySingleton<_i5.Storage>(() => _i5.Storage(get<_i4.SharedPreferences>()),
-      registerFor: {_dev}, dispose: (i) => i.dispose());
-  gh.factory<_i6.UserRepositoryImpl>(() => _i6.UserRepositoryImpl(),
+  gh.factory<_i5.UserRepoLocalDataSource>(
+      () => _i6.UserRepoLocalDataSourceImpl(get<_i4.SharedPreferences>()));
+  gh.factory<_i7.UserRepositoryRemoteDataSource>(
+      () => _i8.UserRepoRemoteDataSourceImpl(get<_i3.Dio>()));
+  gh.factory<_i9.UserRepository>(
+      () => _i10.UserRepositoryImpl(
+          remoteDataSource: get<_i7.UserRepositoryRemoteDataSource>(),
+          localDataSource: get<_i5.UserRepoLocalDataSource>()),
       registerFor: {_dev});
   return get;
 }
 
-class _$AppModule extends _i7.AppModule {}
+class _$AppModule extends _i11.AppModule {}

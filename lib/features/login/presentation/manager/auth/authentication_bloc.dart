@@ -1,24 +1,25 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
+import 'package:flutter_start_repo/features/login/domain/use_cases/use_cases.dart';
 import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
 import 'package:flutter_start_repo/locator.dart';
 import 'package:flutter_start_repo/features/login/data/models/User.dart';
-import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart';
 
 import 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Cubit<AuthenticationState> {
-  final UserRepositoryImpl userRepository;
+  final LoginUseCases loginUseCases;
   User? _userInfo;
   User? get userInfo => _userInfo;
 
-  AuthenticationBloc({required this.userRepository}) : super(AuthenticationUninitialized()){
+  AuthenticationBloc({required this.loginUseCases}) : super(AuthenticationUninitialized()){
    appStarted();
   }
 
   appStarted() async {
-    final User? user = userRepository.getUserInfo();
+    final User? user = loginUseCases.loginUseCase.getUserInfo();
     if (user != null) {
       g<Dio>().options.headers['Authorization'] = 'Bearer ${user.token}';
       emit(AuthenticationAuthenticated());

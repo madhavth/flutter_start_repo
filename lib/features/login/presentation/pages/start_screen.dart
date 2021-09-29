@@ -12,8 +12,7 @@ class StartScreen extends StatelessWidget {
     return SafeArea(
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
-
-          return HomeScreen();
+          // return HomeScreen();
 
           if (state is AuthenticationAuthenticated) {
             return const HomeScreen();

@@ -16,11 +16,13 @@ class LoginForm extends StatefulWidget {
   _LoginFormState createState() => _LoginFormState();
 }
 
+GlobalKey<FormState> _formKey = GlobalKey();
+
+
 class _LoginFormState extends State<LoginForm> {
   String _email = "";
   String _password = "";
 
-  GlobalKey<FormState> _formKey = GlobalKey();
 
   _onSignInPress() {
     if (!_formKey.currentState!.validate()) return;
