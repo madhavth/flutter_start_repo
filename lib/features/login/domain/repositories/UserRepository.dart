@@ -7,9 +7,9 @@ abstract class UserRepository {
   // Dio client;
   UserRepository();
 
-  Future<Either<Failure, User>> authenticateUser(username, password);
+  Future<User> authenticateUser(username, password);
 
-  Future<Map> registerUser(Map<String,dynamic> register);
+  Future<bool> registerUser(Map<String,dynamic> register);
 
   Future<bool> deleteUserInfo();
 

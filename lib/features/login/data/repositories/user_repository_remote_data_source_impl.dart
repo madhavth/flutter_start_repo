@@ -20,10 +20,8 @@ class UserRepoRemoteDataSourceImpl extends UserRepositoryRemoteDataSource {
   }
 
   @override
-  Future<Map> registerUser(Map<String, dynamic> register) async {
-    var response =
-    await _dio.post(Api.REGISTER, data: FormData.fromMap(register));
-    return response.data;
+  Future<bool> registerUser(Map<String, dynamic> register) async {
+    return true;
   }
 
 }

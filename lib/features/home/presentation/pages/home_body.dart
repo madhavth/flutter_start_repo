@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
+import 'package:flutter_start_repo/features/login/presentation/cubits/auth/authentication_bloc.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({Key? key}) : super(key: key);

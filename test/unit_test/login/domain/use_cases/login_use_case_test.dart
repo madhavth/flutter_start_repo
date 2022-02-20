@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_start_repo/features/login/data/models/User.dart';
 import 'package:flutter_start_repo/features/login/domain/entities/login_user.dart';
 import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/features/login/domain/use_cases/login_use_case.dart';
+import 'package:flutter_start_repo/features/login/domain/use_cases/login/login_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -25,9 +25,9 @@ void main() {
   test('should login and get proper user response', () async {
     when(mockUserRepository.authenticateUser(tUser, tPass))
         .thenAnswer((realInvocation) async =>
-        Right(tResponse));
+        tResponse);
 
-    final result = await useCase(UserLogin(tUser, tPass));
+    final result = await useCase(LoginParams(tUser, tPass));
     expect(result, tResponse);
     verify(mockUserRepository.authenticateUser(tUser, tPass));
     verifyNoMoreInteractions(mockUserRepository);

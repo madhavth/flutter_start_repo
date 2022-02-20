@@ -14,5 +14,11 @@ class AuthenticationUnauthenticated extends AuthenticationState {
 
 }
 
+class AuthenticationFailure extends AuthenticationState {
+  final String error;
+
+  AuthenticationFailure(this.error);
+}
+
 class AuthenticationLoading extends AuthenticationState {}
 

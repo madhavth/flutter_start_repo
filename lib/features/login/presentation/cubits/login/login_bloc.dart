@@ -1,28 +1,30 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
-import 'package:flutter_start_repo/features/login/presentation/manager/login/bloc.dart';
+import 'package:flutter_start_repo/features/login/domain/use_cases/login/login_use_case.dart';
+import 'package:flutter_start_repo/features/login/domain/use_cases/login/use_cases.dart';
+import 'package:flutter_start_repo/features/login/presentation/cubits/auth/authentication_bloc.dart';
 import 'package:flutter_start_repo/main.dart';
 import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart';
 import 'package:flutter_start_repo/utils/error_helper.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../utils/error_helper.dart';
 import 'bloc.dart';
 
 class LoginBloc extends Cubit<LoginState> {
+  final LoginUseCases useCases;
   final AuthenticationBloc authenticationBloc;
 
   LoginBloc({
-    required this.userRepository,
+    required this.useCases,
     required this.authenticationBloc,
   })  : super(LoginInitial());
 
   loginButtonPressed(String username, String password) async {
     emit(LoginLoading());
-    final userInfoResult = await userRepository.authenticateUser(
-        username,
-        password,
+    final userInfoResult = await useCases.loginUseCase(
+      LoginParams(username,password)
       );
 
       userInfoResult.fold((error) {

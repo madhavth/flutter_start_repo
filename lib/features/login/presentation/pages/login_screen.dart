@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/features/login/presentation/manager/auth/bloc.dart';
-import 'package:flutter_start_repo/features/login/presentation/manager/login/bloc.dart';
 import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart';
+import 'package:flutter_start_repo/features/login/domain/use_cases/login/use_cases.dart';
+import 'package:flutter_start_repo/features/login/presentation/cubits/auth/authentication_bloc.dart';
 import 'package:flutter_start_repo/features/login/presentation/pages/login_form.dart';
+import 'package:flutter_start_repo/locator.dart';
+
+import '../cubits/login/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -25,11 +28,8 @@ class LoginScreen extends StatelessWidget {
             ),
             BlocProvider<LoginBloc>(
               create: (context) {
-                return LoginBloc(
-                  authenticationBloc:
-                      BlocProvider.of<AuthenticationBloc>(context),
-                  userRepository: RepositoryProvider.of<UserRepository>(context),
-                );
+                return LoginBloc(useCases: g<LoginUseCases>(),
+                    authenticationBloc: context.read<AuthenticationBloc>());
               },
               child: LoginForm(),
             ),

@@ -1,6 +1,6 @@
-
-import 'package:flutter_start_repo/features/login/domain/use_cases/login_use_case.dart';
 import 'package:injectable/injectable.dart';
+
+import 'login_use_case.dart';
 
 @Injectable()
 class LoginUseCases {

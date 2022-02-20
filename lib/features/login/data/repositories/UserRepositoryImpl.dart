@@ -19,18 +19,11 @@ class UserRepositoryImpl extends UserRepository {
   // Dio client;
   UserRepositoryImpl({required this.remoteDataSource, required this.localDataSource});
 
-  Future<Either<Failure, User>> authenticateUser(username, password) async {
-    try{
-      final result = await remoteDataSource.authenticateUser(username,password);
-      return Right(result);
-    }
-    catch(e)
-    {
-      return Left(Failure("Something went wrong trying to authenticate user."));
-    }
+  Future<User> authenticateUser(username, password) async {
+    return await remoteDataSource.authenticateUser(username, password);
   }
 
-  Future<Map> registerUser(Map<String,dynamic> register) async {
+  Future<bool> registerUser(Map<String,dynamic> register) async {
     return await remoteDataSource.registerUser(register);
   }
 
