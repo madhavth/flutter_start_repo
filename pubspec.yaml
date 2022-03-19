@@ -34,6 +34,7 @@ dev_dependencies:
   mockito: ^5.0.9
   freezed: ^0.14.2
   freezed_annotation: ^0.14.2
+  flutter_lints: ^1.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
