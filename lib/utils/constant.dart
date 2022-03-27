@@ -1,11 +1,11 @@
 class Preference {
-  static const USER_INFO = "user-info";
+  static const userInfo = "user-info";
 }
 
 class Api {
-  static const BASE_URL = "";
-  static const LOGIN = "/login";
-  static const REGISTER = "/register";
+  static const baseUrl = "";
+  static const login = "/login";
+  static const register = "/register";
 }
 
 class Font {

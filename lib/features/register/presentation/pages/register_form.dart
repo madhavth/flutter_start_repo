@@ -50,7 +50,7 @@ class _RegisterFormState extends State<RegisterForm> {
             BlocConsumer<RegisterBloc, RegisterState>(
               listener: (context, state) {
                 if (state is RegisterSuccess) {
-                  Navigator.pushReplacementNamed(context, AppRouter.LOGIN);
+                  Navigator.pushReplacementNamed(context, AppRouter.kLogin);
                 } else if (state is RegisterError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

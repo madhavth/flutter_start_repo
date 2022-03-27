@@ -1,11 +1,11 @@
-import 'package:flutter_start_repo/di/injections.dart';
-import 'package:flutter_start_repo/locator.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+
+import 'locator.config.dart';
 
 final g = GetIt.instance;
 
 @InjectableInit(initializerName: r"$initGetIt")
-setupDependencies(String environment) async {
+Future<void> setupDependencies(String environment) async {
   await $initGetIt(g, environment: environment);
 }

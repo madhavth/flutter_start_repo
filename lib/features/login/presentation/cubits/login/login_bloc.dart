@@ -1,15 +1,10 @@
-
 import 'package:bloc/bloc.dart';
-import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/features/login/domain/use_cases/login/login_use_case.dart';
-import 'package:flutter_start_repo/features/login/domain/use_cases/login/use_cases.dart';
-import 'package:flutter_start_repo/features/login/presentation/cubits/auth/authentication_bloc.dart';
-import 'package:flutter_start_repo/main.dart';
-import 'package:flutter_start_repo/features/login/data/repositories/UserRepositoryImpl.dart';
-import 'package:flutter_start_repo/utils/error_helper.dart';
-import 'package:injectable/injectable.dart';
 
+import '../../../../../main.dart';
 import '../../../../../utils/error_helper.dart';
+import '../../../domain/use_cases/login/login_use_case.dart';
+import '../../../domain/use_cases/login/use_cases.dart';
+import '../auth/authentication_bloc.dart';
 import 'bloc.dart';
 
 class LoginBloc extends Cubit<LoginState> {
@@ -19,22 +14,21 @@ class LoginBloc extends Cubit<LoginState> {
   LoginBloc({
     required this.useCases,
     required this.authenticationBloc,
-  })  : super(LoginInitial());
+  }) : super(LoginInitial());
 
-  loginButtonPressed(String username, String password) async {
+  Future<void> loginButtonPressed(String username, String password) async {
     emit(LoginLoading());
-    final userInfoResult = await useCases.loginUseCase(
-      LoginParams(username,password)
-      );
+    final userInfoResult =
+        await useCases.loginUseCase.execute(LoginParams(username, password));
 
-      userInfoResult.fold((error) {
+    userInfoResult.fold((error) {
       logger.e(error.errorMessage);
-      emit(LoginFailure(error: ErrorHelper.getErrorMessage(error.errorMessage)));
-      },
-    (userInfo) {
+      emit(
+        LoginFailure(error: ErrorHelper.getErrorMessage(error.errorMessage)),
+      );
+    }, (userInfo) {
       logger.i("loginbloc === ${userInfo.toJson()}");
-          authenticationBloc.loggedIn(userInfo);
-      });
-
+      authenticationBloc.loggedIn(userInfo);
+    });
   }
 }

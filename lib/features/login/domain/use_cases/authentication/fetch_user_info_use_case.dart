@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_start_repo/core/errors/failures.dart';
-import 'package:flutter_start_repo/features/login/data/models/User.dart';
-import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/utils/base_use_case.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../core/errors/failures.dart';
+import '../../../../../utils/base_use_case.dart';
+import '../../../data/models/user.dart';
+import '../../repositories/user_repository.dart';
 
 // UseCase<Type, Params>
 @Injectable()
@@ -13,17 +14,17 @@ class FetchUserInfoUseCase extends UseCase<User, NoParams> {
   FetchUserInfoUseCase(this.repository);
 
   @override
-  Future<Either<Failure, User>> call(NoParams param) async {
+  Future<Either<Failure, User>> execute(NoParams params) async {
     try{
       final success = repository.getUserInfo();
       if(success == null){
-        return Left(Failure("User not found"));
+        return const Left(Failure("User not found"));
       }
       return Right(success);
     }
-    catch(e)
+    on Exception
     {
-      return Left(Failure("Failed fetching user info"));
+      return const Left(Failure("Failed fetching user info"));
     }
   }
 }

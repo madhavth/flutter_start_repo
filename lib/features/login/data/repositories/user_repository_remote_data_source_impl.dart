@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_start_repo/features/login/data/data_sources/user_repository_remote_data_source.dart';
-import 'package:flutter_start_repo/features/login/data/models/User.dart';
-import 'package:flutter_start_repo/utils/constant.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../data_sources/user_repository_remote_data_source.dart';
+import '../models/user.dart';
 
 @Injectable(as: UserRepositoryRemoteDataSource)
 class UserRepoRemoteDataSourceImpl extends UserRepositoryRemoteDataSource {
@@ -21,6 +20,7 @@ class UserRepoRemoteDataSourceImpl extends UserRepositoryRemoteDataSource {
 
   @override
   Future<bool> registerUser(Map<String, dynamic> register) async {
+    await _dio.get('https://www.google.com');
     return true;
   }
 

@@ -9,17 +9,17 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
-import 'di/appModule.dart' as _i20;
+import 'di/app_module.dart' as _i20;
 import 'features/login/data/data_sources/user_repo_local_data_source.dart'
     as _i5;
 import 'features/login/data/data_sources/user_repository_remote_data_source.dart'
     as _i7;
+import 'features/login/data/repositories/user_repository_impl.dart' as _i10;
 import 'features/login/data/repositories/user_repo_local_data_source_impl.dart'
     as _i6;
 import 'features/login/data/repositories/user_repository_remote_data_source_impl.dart'
     as _i8;
-import 'features/login/data/repositories/UserRepositoryImpl.dart' as _i10;
-import 'features/login/domain/repositories/UserRepository.dart' as _i9;
+import 'features/login/domain/repositories/user_repository.dart' as _i9;
 import 'features/login/domain/use_cases/authentication/fetch_user_info_use_case.dart'
     as _i11;
 import 'features/login/domain/use_cases/authentication/logout_use_case.dart'

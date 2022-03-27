@@ -1,5 +1,5 @@
 class NumberUtils {
-   static String k_m_b_generator(num) {
+   static String kMBGenerator(int num) {
       if (num > 999 && num < 99999) {
         return "${(num / 1000).toStringAsFixed(1)} K";
       } else if (num > 99999 && num < 999999) {
