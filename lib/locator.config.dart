@@ -14,9 +14,9 @@ import 'features/login/data/data_sources/user_repo_local_data_source.dart'
     as _i5;
 import 'features/login/data/data_sources/user_repository_remote_data_source.dart'
     as _i7;
-import 'features/login/data/repositories/user_repository_impl.dart' as _i10;
 import 'features/login/data/repositories/user_repo_local_data_source_impl.dart'
     as _i6;
+import 'features/login/data/repositories/user_repository_impl.dart' as _i10;
 import 'features/login/data/repositories/user_repository_remote_data_source_impl.dart'
     as _i8;
 import 'features/login/domain/repositories/user_repository.dart' as _i9;

@@ -12,7 +12,6 @@ import 'features/login/domain/use_cases/authentication/use_cases.dart';
 import 'features/login/presentation/cubits/auth/authentication_bloc.dart';
 import 'locator.dart';
 import 'my_app.dart';
-import 'utils/simple_bloc_delegate.dart';
 
 String environment = Environment.dev;
 
@@ -25,7 +24,6 @@ var logger = Logger(
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  Bloc.observer = SimpleBlocObserver();
   await setupDependencies(environment);
   final userRepository = g<UserRepository>();
   runApp(
