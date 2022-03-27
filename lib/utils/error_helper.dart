@@ -1,26 +1,29 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_start_repo/main.dart';
+import '../main.dart';
 
 class ErrorHelper {
   static String getErrorMessage(error) {
     logger.e('error helper === $error');
-    String message=  "Something went wrong.";
+    var message = "Something went wrong.";
     if (error is DioError) {
       message = error.message;
     }
     return message;
   }
 
-  static extractApiError(DioError error) {
-    String message = "Something went wrong";
+  static String extractApiError(error) {
+    var message = "Something went wrong";
     logger.e(
-        'error === ${error.response}  ==== ${error.response != null ? error.response?.data : 'noresponse'} ==== ${error.response != null ? error.response?.extra : 'no response'}=== ${error.message}');
+        'error === ${error.response}  ==== ${error.response != null ?
+        error.response?.data : 'noresponse'} ==== ${error.response != null ?
+        error.response?.extra : 'no response'}=== ${error.message}',);
     if (error is DioError) {
-      if (error.error is SocketException || error.type == DioErrorType.connectTimeout) {
-        message =
-            "Cannot connect to server. Make sure you have proper internet connection";
+      if (error.error is SocketException ||
+          error.type == DioErrorType.connectTimeout) {
+        message = "Cannot connect to server. Make sure you have"
+            " proper internet connection";
       } else if (error.response != null &&
           error.response?.data['message'] != null) {
         message = error.response?.data['message'];

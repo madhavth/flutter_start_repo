@@ -1,6 +1,6 @@
+import 'package:flutter_start_repo/main.dart' as app;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:flutter_start_repo/main.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -9,7 +9,7 @@ void main() {
   {
     app.main();
 
-    testWidgets("testing 1", (WidgetTester tester) async {
+    testWidgets("testing 1", (tester) async {
       //example
       // await tester.pumpAndSettle();
       // final button = find.text("hello");

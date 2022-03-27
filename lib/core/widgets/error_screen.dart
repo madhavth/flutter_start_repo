@@ -9,15 +9,15 @@ class ErrorScreen extends StatelessWidget {
   final double? gap;
   final Widget? retryButton;
 
-  const ErrorScreen(
-      {Key? key,
-      this.gap = 10,
-      this.retryButton,
-      this.message="",
-      this.fontSize = 14,
-      this.retry,
-      this.textColor})
-      : super(key: key);
+  const ErrorScreen({
+    Key? key,
+    this.gap = 10,
+    this.retryButton,
+    this.message = "",
+    this.fontSize = 14,
+    this.retry,
+    this.textColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,9 @@ class ErrorScreen extends StatelessWidget {
             Text(
               message!,
               style: TextStyle(
-                  fontSize: fontSize!.sp, color: textColor ?? Colors.black),
+                fontSize: fontSize!.sp,
+                color: textColor ?? Colors.black,
+              ),
             ),
             retry != null
                 ? Column(
@@ -42,11 +44,11 @@ class ErrorScreen extends StatelessWidget {
                             onPressed: () {
                               retry!();
                             },
-                            icon: Icon(Icons.refresh_sharp),
+                            icon: const Icon(Icons.refresh_sharp),
                           ),
                     ],
                   )
-                : SizedBox()
+                : const SizedBox()
           ],
         ),
       ),

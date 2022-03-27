@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start_repo/main.dart';
+import '../main.dart';
 
 class SimpleBlocObserver extends BlocObserver {
 
@@ -12,8 +12,8 @@ class SimpleBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(cubit, Object error, StackTrace stacktrace) {
-    super.onError(cubit, error, stacktrace);
+  void onError(bloc, Object error, StackTrace stackTrace) {
+    super.onError(bloc, error, stackTrace);
     logger.e(error);
   }
 

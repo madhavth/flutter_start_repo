@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
 import 'core/extras/http_override.dart';
-import 'features/login/domain/repositories/UserRepository.dart';
+import 'features/login/domain/repositories/user_repository.dart';
 import 'features/login/domain/use_cases/authentication/use_cases.dart';
 import 'features/login/presentation/cubits/auth/authentication_bloc.dart';
 import 'locator.dart';
@@ -43,7 +43,7 @@ Future<void> main() async {
             },
           )
         ],
-        child: InitScreen(),
+        child: const InitScreen(),
       ),
     ),
   );

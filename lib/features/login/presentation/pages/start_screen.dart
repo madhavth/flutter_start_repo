@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start_repo/core/widgets/loading.dart';
-import 'package:flutter_start_repo/core/widgets/splash_screen.dart';
-import 'package:flutter_start_repo/features/home/presentation/pages/home_screen.dart';
-import 'package:flutter_start_repo/features/login/presentation/pages/login_screen.dart';
 
+import '../../../../core/widgets/loading.dart';
+import '../../../../core/widgets/splash_screen.dart';
+import '../../../home/presentation/pages/home_screen.dart';
 import '../cubits/auth/authentication_bloc.dart';
 import '../cubits/auth/authentication_state.dart';
+import 'login_screen.dart';
 
 class StartScreen extends StatelessWidget {
+  const StartScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,13 +22,13 @@ class StartScreen extends StatelessWidget {
             return const HomeScreen();
           }
           if (state is AuthenticationUnauthenticated) {
-            return LoginScreen();
+            return const LoginScreen();
             // return RegisterScreen();
           }
           if (state is AuthenticationLoading) {
-            return LoadingIndicator();
+            return const LoadingIndicator();
           }
-          return SplashScreen();
+          return const SplashScreen();
         },
       ),
     );

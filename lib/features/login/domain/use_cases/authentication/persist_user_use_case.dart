@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_start_repo/core/errors/failures.dart';
-import 'package:flutter_start_repo/features/login/data/models/User.dart';
-import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/utils/base_use_case.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../core/errors/failures.dart';
+import '../../../../../utils/base_use_case.dart';
+import '../../../data/models/user.dart';
+import '../../repositories/user_repository.dart';
 
 @Injectable()
 class PersistUserInfoUseCase extends UseCase<bool, User> {
@@ -12,14 +13,14 @@ class PersistUserInfoUseCase extends UseCase<bool, User> {
   PersistUserInfoUseCase(this.repository);
 
   @override
-  Future<Either<Failure, bool>> call(User param) async {
+  Future<Either<Failure, bool>> execute(User params) async {
     try{
-      final success =  await repository.persistUserInfo(param);
+      final success =  await repository.persistUserInfo(params);
       return Right(success);
     }
-    catch(e)
+    on Exception
     {
-      return Left(Failure("Something went wrong while saving user info"));
+      return const Left(Failure("Something went wrong while saving user info"));
     }
   }
 }

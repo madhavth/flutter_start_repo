@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_start_repo/core/errors/failures.dart';
-import 'package:flutter_start_repo/features/login/data/models/User.dart';
-import 'package:flutter_start_repo/features/login/domain/entities/login_user.dart';
-import 'package:flutter_start_repo/features/login/domain/repositories/UserRepository.dart';
-import 'package:flutter_start_repo/utils/base_use_case.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../core/errors/failures.dart';
+import '../../../../../utils/base_use_case.dart';
+import '../../repositories/user_repository.dart';
 
 @Injectable()
 class LogoutUseCase extends UseCase<bool, NoParams> {
@@ -13,14 +12,14 @@ class LogoutUseCase extends UseCase<bool, NoParams> {
   LogoutUseCase(this.repository);
 
   @override
-  Future<Either<Failure, bool>> call(NoParams params) async {
+  Future<Either<Failure, bool>> execute(NoParams params) async {
     try{
       final success=  await repository.deleteUserInfo();
       return Right(success);
     }
-    catch(e)
+    on Exception
     {
-      return Left(Failure("Failed to delete user info."));
+      return const Left(Failure("Failed to delete user info."));
     }
   }
 }

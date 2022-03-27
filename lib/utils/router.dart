@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start_repo/core/widgets/session_expired.dart';
-import 'package:flutter_start_repo/features/login/presentation/pages/login_screen.dart';
-import 'package:flutter_start_repo/features/register/presentation/pages/register_screen.dart';
-import 'package:flutter_start_repo/features/login/presentation/pages/start_screen.dart';
+
+import '../core/widgets/session_expired.dart';
+import '../features/login/presentation/pages/login_screen.dart';
+import '../features/login/presentation/pages/start_screen.dart';
+import '../features/register/presentation/pages/register_screen.dart';
 
 class AppRouter {
-  static const LOGIN = "login";
-  static const REGISTER = 'register';
-  static const START_PAGE = 'start_page';
-  static const SESSION_EXPIRED = 'session-expired';
+  static const kLogin = "login";
+  static const kRegister = 'register';
+  static const kStartPage = 'start_page';
+  static const kSessionExpired = 'session-expired';
 
   static GlobalKey navigatorKey = GlobalKey<NavigatorState>();
 
-  static onGenerateRoute(RouteSettings settings) {
+  static PageRoute onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case START_PAGE:
+      case kStartPage:
         return MaterialPageRoute(
-            settings: RouteSettings(name: START_PAGE),
-            builder: (_) => StartScreen());
-      case LOGIN:
-        return MaterialPageRoute(
-            builder: (_) => LoginScreen());
-      case REGISTER:
-        return MaterialPageRoute(
-            builder: (_) => RegisterScreen());
-      case SESSION_EXPIRED:
+          settings: const RouteSettings(name: kStartPage),
+          builder: (_) => const StartScreen(),
+        );
+      case kLogin:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case kRegister:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+      case kSessionExpired:
         return PageRouteBuilder(
-            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-              return SessionExpiredScreen();
-        });
+            pageBuilder: (context, animation, secondaryAnimation) {
+          return const SessionExpiredScreen();
+        },);
 
       default:
-        return Scaffold(body: Center(child: Text('something went wrong')))
-            .defaultPage();
+        return const Scaffold(
+          body: Center(
+            child: Text('something went wrong'),
+          ),
+        ).defaultPage();
     }
   }
 }

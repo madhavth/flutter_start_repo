@@ -7,14 +7,17 @@ class User {
 
   static User fromJson(Map<String, dynamic> json) {
     return User(
-        id: json['id'], username: json['username'], token: json['token']);
+      id: json['id'],
+      username: json['username'],
+      token: json['token'],
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['token'] = this.token;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['username'] = username;
+    data['token'] = token;
     return data;
   }
 

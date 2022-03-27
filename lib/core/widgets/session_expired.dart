@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start_repo/utils/router.dart';
+import '../../utils/router.dart';
 
 class SessionExpiredScreen extends StatelessWidget {
+  const SessionExpiredScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,12 +11,12 @@ class SessionExpiredScreen extends StatelessWidget {
       body: AlertDialog(
         actions: [
           MaterialButton(onPressed: () {
-            Navigator.pushNamed(context, AppRouter.LOGIN);
+            Navigator.pushNamed(context, AppRouter.kLogin);
           },
-          child: Text('Go to login Screen'),
+          child: const Text('Go to login Screen'),
           )
         ],
-        title: Text('Session Expired'),
+        title: const Text('Session Expired'),
 
       ),
     );
