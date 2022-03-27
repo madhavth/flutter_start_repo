@@ -20,6 +20,6 @@ class SimpleBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    logger.d('onChange cubit $change, $bloc');
+    logger.i('onChange cubit $change, $bloc');
   }
 }

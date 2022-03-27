@@ -21,7 +21,8 @@ class StartScreen extends StatelessWidget {
           if (state is AuthenticationAuthenticated) {
             return const HomeScreen();
           }
-          if (state is AuthenticationUnauthenticated) {
+          if (state is AuthenticationUnauthenticated ||
+              state is AuthenticationFailure) {
             return const LoginScreen();
             // return RegisterScreen();
           }
