@@ -6,7 +6,7 @@ class Failure extends Equatable {
   final List _properties;
   // If the subclasses have some properties, they'll get passed to this constructor
   // so that Equatable can perform value comparison.
-  Failure(this.errorMessage, [this._properties = const <dynamic>[]]);
+  const Failure(this.errorMessage, [this._properties = const <dynamic>[]]);
 
 
   @override
