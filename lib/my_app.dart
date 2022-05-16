@@ -12,7 +12,7 @@ class InitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(320, 640),
-      builder: () {
+      builder: (child) {
         return const MyApp();
       },
     );
